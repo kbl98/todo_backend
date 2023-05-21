@@ -5,13 +5,16 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import TodoItem
 from .serializers import TodoSerializer
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 
 
 # Create your views here.
 
 class TodoView(APIView):
-    permission_classes = []
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         todos = TodoItem.objects.all()
         serializer = TodoSerializer(instance=todos, many=True)
