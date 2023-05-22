@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from todos.views import loginView,TodoView 
+from todos.views import loginView,TodoDetailView 
+from rest_framework.urlpatterns import format_suffix_patterns
 
 
 
@@ -26,4 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', loginView.as_view()),
     path('todos/', TodoView.as_view()),
+    path('todos/<int:pk>/', TodoDetailView.as_view())
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)

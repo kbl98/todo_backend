@@ -5,11 +5,10 @@ from django.conf import settings
 # Create your models here.
 class TodoItem(models.Model):
   title = models.CharField(max_length=255)
-  author = models.CharField(max_length=255)
-  date=today = date.today()
+  date = date.today()
   author= models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
+        on_delete=models.CASCADE, null=True, default=None
     )
   checked = models.BooleanField(default=False)
   def __str__(self):
